@@ -118,12 +118,8 @@ def domain_to_metta(domain: Domain) -> str:
         s += action_to_metta(a)
 
     return s
-
-
-def object_to_metta(obj: Constant) -> str:
-    return f"(object {obj.name})\n" \
-           f"(isa {obj.name} {obj.type_tag if obj.type_tag else "object"})\n"
-
+return f"(object {obj.name})\n" \
+       f"(isa {obj.name} {obj.type_tag if obj.type_tag else 'object'})\n"
 
 # (= (valuation (state 1)) (superpose ((clear a)
 #                                     (on a b)
