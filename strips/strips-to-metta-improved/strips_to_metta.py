@@ -116,7 +116,6 @@ def domain_to_metta(domain: Domain) -> str:
 
     for a in domain.actions:
         s += action_to_metta(a)
-
     return s
 return f"(object {obj.name})\n" \
        f"(isa {obj.name} {obj.type_tag if obj.type_tag else 'object'})\n"
