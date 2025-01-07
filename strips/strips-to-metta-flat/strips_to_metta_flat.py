@@ -44,20 +44,17 @@ def action_to_metta(a: Action) -> str:
     s += effect_to_metta(a.effect, a.name)
     return s
 
-
 def formula_to_metta(g: Formula, prop: str, subject: str) -> str:
     def match_formula(f):
-        match f:
-            case Predicate():
-                return f"({prop} {subject} ({f.name} {''.join([f'{t.name} ' for t in f.terms])})) \n"
-            case And():
-                return "".join([match_formula(op) for op in f.operands])
-            case _:
-                raise NotImplementedError(f"So far, only conjunctions and predicates are allowed in {subject}")
+        if isinstance(f, Predicate):
+            return f"({prop} {subject} ({f.name} {''.join([f'{t.name} ' for t in f.terms])})) \n"
+        elif isinstance(f, And):
+            return "".join([match_formula(op) for op in f.operands])
+        else:
+            raise NotImplementedError(f"So far, only conjunctions and predicates are allowed in {subject}")
 
     return match_formula(g)
-
-
+    
 def precondition_to_metta(p: Formula, action_name: str) -> str:
     return formula_to_metta(p, "precondition", action_name)
 
