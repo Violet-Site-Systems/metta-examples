@@ -20,9 +20,9 @@ def predicate_to_metta(p: Predicate) -> str:
         else:
             s += f"(var {p.name} {i + 1} untyped) \n"
     return s
+from typing import Optional
 
-
-def types_to_metta(type_dict: dict['name', 'Optional[name]']) -> str:
+def types_to_metta(type_dict: dict[str, Optional[str]]) -> str:
     s = "(type object) \n"     # in PDDL, 'object' is the default type, all other types are also objects
     for subtype, type in type_dict.items():
         s += f"(type {subtype}) \n"
