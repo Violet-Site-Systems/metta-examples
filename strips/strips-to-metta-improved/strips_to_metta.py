@@ -35,7 +35,7 @@ def action_to_metta(a: Action) -> str:
     s += precondition_to_metta(a.precondition, a)
     s += effect_to_metta(a.effect, a)
     return s
-    
+
 def formula_to_metta(g: Formula, prop: str, subject: str) -> str:
     def match_formula(f):
         if isinstance(f, Predicate):
@@ -44,8 +44,16 @@ def formula_to_metta(g: Formula, prop: str, subject: str) -> str:
             return "".join([match_formula(op) for op in f.operands])
         else:
             raise NotImplementedError(f"So far, only conjunctions and predicates are allowed in {subject}")
-
     return match_formula(g)
+
+def get_predicates(formula: Formula) -> List[Predicate]:
+    predicates = []
+    if isinstance(formula, Predicate):
+        predicates.append(formula)
+    elif isinstance(formula, And):
+        for operand in formula.operands:
+            predicates.extend(get_predicates(operand))
+    return predicates
 
 def precondition_to_metta(pre: Formula, action: Action) -> str:
     predicates = ' '.join([f"({p.name} {' '.join(['$' + v.name for v in p.terms])})" for p in get_predicates(pre)])
