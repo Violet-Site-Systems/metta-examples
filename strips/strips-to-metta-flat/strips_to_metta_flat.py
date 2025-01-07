@@ -20,6 +20,7 @@ def predicate_to_metta(p: Predicate) -> str:
         else:
             s += f"(var {p.name} {i + 1} untyped) \n"
     return s
+
 from typing import Optional
 
 def types_to_metta(type_dict: dict[str, Optional[str]]) -> str:
@@ -62,15 +63,15 @@ def precondition_to_metta(p: Formula, action_name: str) -> str:
 def effect_to_metta(e: Formula, action_name: str) -> str:
     def match_formula(eff):
         s = ""
-        match eff:
-            case AndEffect():
-                for op in eff.operands:
-                    match op:
-                        case Predicate():
-                            s += f"(pos_effect {action_name} ({op.name} {''.join([f'{t.name} ' for t in op.terms])})) \n"
-                        case Not():
-                            op2 = op.argument
-                            s += f"(negative_effect {action_name} ({op2.name} {''.join([f'{t.name} ' for t in op2.terms])})) \n"
+        
+        if isinstance(eff, AndEffect):
+            for op in eff.operands:
+                if isinstance(op, Predicate):
+                    s += f"(pos_effect {action_name} ({op.name} {''.join([f'{t.name} ' for t in op.terms])})) \n"
+                elif isinstance(op, Not):
+                    op2 = op.argument
+                    s += f"(negative_effect {action_name} ({op2.name} {''.join([f'{t.name} ' for t in op2.terms])})) \n"
+        
         return s
 
     return match_formula(e)
