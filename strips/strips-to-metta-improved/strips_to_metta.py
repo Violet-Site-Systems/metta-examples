@@ -71,11 +71,10 @@ def split_pos_neg(eff: AndEffect) -> Tuple[List[Predicate], List[Predicate]]:
     # assert eff is AndEffect
     # for some reason AndEffects are not always parsed as AndEffects
     for op in eff.operands:
-        match op:
-            case Predicate():
-                pos.append(op)
-            case Not():
-                neg.append(op.argument)
+        if isinstance(op, Predicate):
+            pos.append(op)
+        elif isinstance(op, Not):
+            neg.append(op.argument)
     return pos, neg
 
 
@@ -117,8 +116,10 @@ def domain_to_metta(domain: Domain) -> str:
     for a in domain.actions:
         s += action_to_metta(a)
     return s
-return f"(object {obj.name})\n" \
-       f"(isa {obj.name} {obj.type_tag if obj.type_tag else 'object'})\n"
+
+def object_to_metta(obj: Constant) -> str:
+    return f"(object {obj.name})\n" \
+           f"(isa {obj.name} {obj.type_tag if obj.type_tag else 'object'})\n"
 
 # (= (valuation (state 1)) (superpose ((clear a)
 #                                     (on a b)
