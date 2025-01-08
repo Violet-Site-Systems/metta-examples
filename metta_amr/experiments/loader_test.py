@@ -1,6 +1,7 @@
 import os
 import pathlib
-from metta_space import PatternParser, MettaSpace
+from metta_amr.metta_space import PatternParser, MettaSpace
+from metta_amr.amr_processing import AmrProcessor, UtteranceParser
 
 if __name__ == '__main__':
     amr_space = MettaSpace()
