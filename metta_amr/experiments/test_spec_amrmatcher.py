@@ -1,6 +1,9 @@
 
 import logging
 
+from metta_amr.metta_space import PatternParser, MettaSpace
+from metta_amr.amr_processing import AmrProcessor, UtteranceParser
+
 from amr_processing import UtteranceParser, AmrProcessor
 from metta_space import MettaSpace
 from amr_matching import AmrMatcher, AmrMatch
