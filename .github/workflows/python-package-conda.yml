@@ -1,3 +1,6 @@
+env:
+  PYTHONPATH: "${{ github.workspace }}:${{ github.workspace }}/metta_amr"
+
 name: Python Package using Conda
 
 on: [push, pull_request]
