@@ -1,13 +1,13 @@
-env:
-  PYTHONPATH: "${{ github.workspace }}:${{ github.workspace }}/metta_amr"
-
-name: Python Package using Conda
+   name: Python Package using Conda
 
 on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      PYTHONPATH: "${{ github.workspace }}:${{ github.workspace }}/metta_amr"
 
     steps:
       - uses: actions/checkout@v2
@@ -30,4 +30,3 @@ jobs:
       - name: Test with pytest
         run: |
           pytest
-          
