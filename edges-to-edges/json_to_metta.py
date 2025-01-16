@@ -33,6 +33,24 @@ def dict_generator(indict, pre=None):
 with open("InteractiveDisneyStrategy.json") as f:
     ds = [loads(line) for line in f.readlines()]
 
+import os
+
+def convert(json_file, metta_file):
+    try:
+        with open(json_file) as f:
+            data = f.read()
+            # Conversion logic here
+            with open(metta_file, 'w') as mf:
+                mf.write(data)  # Placeholder for actual conversion logic
+    except FileNotFoundError:
+        print(f"Error: The file '{json_file}' was not found.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+if __name__ == "__main__":
+    json_file = "InteractiveDisneyStrategy.json"
+    metta_file = "InteractiveDisneyStrategy.metta"
+    convert(json_file, metta_file)
 
 with open("InteractiveDisneyStrategy.metta", "w") as f:
     for i, d in enumerate(ds):
