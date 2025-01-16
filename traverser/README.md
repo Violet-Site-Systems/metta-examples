@@ -63,7 +63,10 @@ This language can be used for the examples:
 ```
 
 ---
-**[creation.metta](creation.metta) goes over inserting nodes in the graph using a traversal.**
+**[creation.metta][def] goes over inserting nodes in the graph using a traversal.**
 
 
 
+
+
+[def]: creation.metta
