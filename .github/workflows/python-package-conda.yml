@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PYTHONPATH: "${{ github.workspace }}:${{ github.workspace }}/metta_amr"
+      PYTHONPATH: "$PYTHONPATH=$PYTHONPATH:/home/runner/work/metta-examples/metta_amr"
 
     steps:
       - uses: actions/checkout@v2
