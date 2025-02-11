@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - main
-  pull_request:
+          # Set the permissions for the workflow
+permissions:
+  contents: read
+  
+  pull_request: write
     branches:
       - main
+  
    workflow_dispatch:
    paths:
      - '.github/workflows/**'
