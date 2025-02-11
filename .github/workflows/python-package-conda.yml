@@ -1,13 +1,12 @@
-   name: Python Package using Conda
+name: Python Package using Conda
 
 on: 
   push:
     branches:
       - main
-          # Set the permissions for the workflow
+
 permissions:
   contents: read
-  
   pull_request: write
   
    workflow_dispatch:
