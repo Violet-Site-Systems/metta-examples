@@ -9,8 +9,6 @@ permissions:
   contents: read
   
   pull_request: write
-    branches:
-      - main
   
    workflow_dispatch:
    paths:
