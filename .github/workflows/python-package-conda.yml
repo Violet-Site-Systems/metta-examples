@@ -4,14 +4,13 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    paths:
+      - '.github/workflows/**'
 
 permissions:
   contents: read
   pull_request: write
-  
-   workflow_dispatch:
-   paths:
-     - '.github/workflows/**'
 
 jobs:
   build:
