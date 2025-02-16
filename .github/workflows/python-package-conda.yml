@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
     paths:
-      - '.github/workflows/*'
+      - '.github/workflows/**'
 
 permissions:
   contents: read
